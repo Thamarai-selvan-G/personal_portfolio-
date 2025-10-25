@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map - Thamarai selvan Portfolio</title>
+    <link rel="shortcut icon" href="./assets/dhruvil-logo-favicon.svg" type="image/svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .card p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .card a {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .card a:hover {
+            background: #2980b9;
+        }
+        
+        .special-card {
+            border-left-color: #e74c3c;
+        }
+        
+        .app-card {
+            border-left-color: #9b59b6;
+        }
+        
+        .business-card {
+            border-left-color: #f39c12;
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .back-home a {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-home a:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ Portfolio Site Map</h1>
+            <p>Explore all pages and features in Thamarai selvan's portfolio</p>
+        </div>
+        
+        <div class="content">
+            <!-- Main Pages Section -->
+            <div class="section">
+                <h2>📄 Main Pages</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>🏠 Home Page</h3>
+                        <p>Main portfolio page showcasing skills, projects, and contact information.</p>
+                        <a href="./index.html">Visit Home</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>💼 Services</h3>
+                        <p>Freelance services page with pricing and service offerings.</p>
+                        <a href="./services.html">View Services</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🎨 HTML & CSS Projects</h3>
+                        <p>Showcase of 15 different HTML & CSS projects and clones.</p>
+                        <a href="./html-css-projects.html">View Projects</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Features Section -->
+            <div class="section">
+                <h2>✨ Special Features</h2>
+                <div class="grid">
+                    <div class="card special-card">
+                        <h3>📱 Digital Business Card</h3>
+                        <p>A mobile-friendly digital business card with contact links and social media.</p>
+                        <a href="./digitalcard.html">View Digital Card</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apps & Projects Section -->
+            <div class="section">
+                <h2>📱 Apps & Projects</h2>
+                <div class="grid">
+                    <div class="card app-card">
+                        <h3>💰 Splitty App</h3>
+                        <p>Bill splitting mobile app with download links and demo video.</p>
+                        <a href="./splitterapp/index.html">View Splitty App</a>
+                    </div>
+                    
+                    <div class="card app-card">
+                        <h3>📋 Splitty Privacy Policy</h3>
+                        <p>Privacy policy for the Splitty mobile application.</p>
+                        <a href="./splitterapp/privacy-policy.html">View Privacy Policy</a>
+                    </div>
+                    
+                    <div class="card app-card">
+                        <h3>📜 Splitty Terms & Conditions</h3>
+                        <p>Terms and conditions for the Splitty mobile application.</p>
+                        <a href="./splitterapp/terms-and-conditions.html">View Terms</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business & Legal Section -->
+            <div class="section">
+                <h2>⚖️ Business & Legal Pages</h2>
+                <div class="grid">
+                    <div class="card business-card">
+                        <h3>🔒 Privacy Policy</h3>
+                        <p>Website privacy policy and data handling information.</p>
+                        <a href="./business/privacy-policy.html">View Privacy Policy</a>
+                    </div>
+                    
+                    <div class="card business-card">
+                        <h3>📋 Terms of Service</h3>
+                        <p>Website terms of service and usage guidelines.</p>
+                        <a href="./business/terms-of-service.html">View Terms</a>
+                    </div>
+                    
+                    <div class="card business-card">
+                        <h3>↩️ Cancellation & Refund Policy</h3>
+                        <p>Policy for service cancellations and refund procedures.</p>
+                        <a href="./business/cancellation-and-refund-policy.html">View Policy</a>
+                    </div>
+                    
+                    <div class="card business-card">
+                        <h3>🎧 Customer Support</h3>
+                        <p>Customer support information and contact details.</p>
+                        <a href="./business/customer-support.html">Get Support</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="back-home">
+                <a href="./index.html">🏠 Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
