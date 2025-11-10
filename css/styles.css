@@ -238,10 +238,8 @@ body {
 /* section: portfolio */
 
 /* portfolio card – compact */
-/* === refined card visuals === */
 .portfolio-card {
   position: relative;
-  /* overflow: hidden; */
   background: #0a0a0a;
   border-radius: 32px;
   padding: 24px;
@@ -291,7 +289,6 @@ body {
   font-size: 0.9rem;
   letter-spacing: 0.2px;
   line-height: 1.4;
-
   opacity: 1;
 }
 /* technology container – improved alignment & spacing */
@@ -326,8 +323,8 @@ body {
 
 /* glowing shimmer effect on card hover */
 .portfolio-card:hover .portfolio-card-tech img {
-  filter: drop-shadow(0 0 10px rgba(131, 55, 255, 0.4))
-    drop-shadow(0 0 18px rgba(0, 255, 255, 0.2));
+  /* filter: drop-shadow(0 0 10px rgba(131, 55, 255, 0.4))
+    drop-shadow(0 0 18px rgba(0, 255, 255, 0.2)); */
   opacity: 0.9;
 }
 
