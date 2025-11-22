@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Download, Sparkles, Code2, Terminal, Cpu, Globe } from 'lucide-react';
@@ -346,32 +346,35 @@ const OrbitIcon = styled(motion.div)`
   z-index: 20;
 `;
 
-const TypewriterText = ({ text, delay = 0, onComplete }: { text: string, delay?: number, onComplete?: () => void }) => {
+const TypewriterText = ({ text, shouldStart = false, onComplete }: { text: string, shouldStart?: boolean, onComplete?: () => void }) => {
   const [displayedText, setDisplayedText] = useState('');
+  const hasStartedRef = useRef(false);
   
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      let currentIndex = 0;
-      const interval = setInterval(() => {
-        if (currentIndex <= text.length) {
-          setDisplayedText(text.slice(0, currentIndex));
-          currentIndex++;
-        } else {
-          clearInterval(interval);
-          if (onComplete) onComplete();
-        }
-      }, 30); // Typing speed
-      
-      return () => clearInterval(interval);
-    }, delay);
-
-    return () => clearTimeout(timeout);
-  }, [text, delay, onComplete]);
+    if (!shouldStart || hasStartedRef.current) return;
+    
+    hasStartedRef.current = true;
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= text.length) {
+        setDisplayedText(text.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+        if (onComplete) onComplete();
+      }
+    }, 30); // Typing speed
+    
+    return () => clearInterval(interval);
+  }, [text, shouldStart, onComplete]);
 
   return <span dangerouslySetInnerHTML={{ __html: displayedText }} />;
 };
 
 export default function Hero() {
+  // Typing Sequence State
+  const [typingIndex, setTypingIndex] = useState(0);
+
   // Tilt Logic
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -486,37 +489,60 @@ export default function Hero() {
                   <div className="line">
                     <span>1</span>
                     <span>
-                      <TypewriterText text="<span class='keyword'>const</span> <span class='function'>Developer</span> = {" delay={500} />
+                      <TypewriterText 
+                        text="<span class='keyword'>const</span> <span class='function'>Developer</span> = {" 
+                        shouldStart={true}
+                        onComplete={() => setTypingIndex(1)}
+                      />
                     </span>
                   </div>
                   <div className="line">
                     <span>2</span>
                     <span>
-                      <TypewriterText text="&nbsp;&nbsp;name: <span class='string'>'Thamarai'</span>," delay={1500} />
+                      <TypewriterText 
+                        text="&nbsp;&nbsp;name: <span class='string'>'Thamarai selvan'</span>," 
+                        shouldStart={typingIndex >= 1}
+                        onComplete={() => setTypingIndex(2)}
+                      />
                     </span>
                   </div>
                   <div className="line">
                     <span>3</span>
                     <span>
-                      <TypewriterText text="&nbsp;&nbsp;role: <span class='string'>'Fullstack'</span>," delay={2500} />
+                      <TypewriterText 
+                        text="&nbsp;&nbsp;role: <span class='string'>'Fullstack'</span>," 
+                        shouldStart={typingIndex >= 2}
+                        onComplete={() => setTypingIndex(3)}
+                      />
                     </span>
                   </div>
                   <div className="line">
                     <span>4</span>
                     <span>
-                      <TypewriterText text="&nbsp;&nbsp;skills: [<span class='string'>'React Native'</span>, <span class='string'>'Next JS'</span>]," delay={3500} />
+                      <TypewriterText 
+                        text="&nbsp;&nbsp;skills: [<span class='string'>'React Native'</span>, <span class='string'>'Next JS'</span>,<span class='string'>'Supabase'</span>,]," 
+                        shouldStart={typingIndex >= 3}
+                        onComplete={() => setTypingIndex(4)}
+                      />
                     </span>
                   </div>
                   <div className="line">
                     <span>5</span>
                     <span>
-                      <TypewriterText text="&nbsp;&nbsp;hardWorker: <span class='boolean'>true</span>" delay={4500} />
+                      <TypewriterText 
+                        text="&nbsp;&nbsp;hardWorker: <span class='boolean'>true</span>" 
+                        shouldStart={typingIndex >= 4}
+                        onComplete={() => setTypingIndex(5)}
+                      />
                     </span>
                   </div>
                   <div className="line">
                     <span>6</span>
                     <span>
-                      <TypewriterText text="};" delay={5500} />
+                      <TypewriterText 
+                        text="};" 
+                        shouldStart={typingIndex >= 5}
+                      />
                       <span className="cursor" />
                     </span>
                   </div>
