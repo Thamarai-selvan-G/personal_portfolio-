@@ -64,10 +64,6 @@ const skills = [
   { name: 'Git', icon: <img src="/icons/techStacks/git.svg" alt="Git" width={40} height={40} /> },
   { name: 'GitHub', icon: <img src="/icons/techStacks/github.svg" alt="GitHub" width={40} height={40} /> },
   { name: 'Postman', icon: <img src="/icons/techStacks/postman.svg" alt="Postman" width={40} height={40} /> },
-  { name: 'Figma', icon: <img src="/icons/techStacks/android-studio.svg" alt="Figma" width={40} height={40} /> }, // Replaced with available icon or need to check if figma exists, list didn't show figma.svg, using android studio as placeholder or remove?
-  // Wait, I should check the file list again. Figma was NOT in the list.
-  // The list was: android-studio, android, css3, firebase, git, github, html5, js, nextjs, nodejs, npm, postgresql, postman, react, redux, styledcomponents, supabase, vercel, vitejs.
-  // So I should only use those.
   { name: 'Node.js', icon: <img src="/icons/techStacks/nodejs.svg" alt="Node.js" width={40} height={40} /> },
   { name: 'PostgreSQL', icon: <img src="/icons/techStacks/postgresql.svg" alt="PostgreSQL" width={40} height={40} /> },
   { name: 'Styled Components', icon: <img src="/icons/techStacks/styledcomponents.svg" alt="Styled Components" width={40} height={40} /> },
