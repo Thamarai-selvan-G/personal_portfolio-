@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 
 const HeroSection = styled.section`
   min-height: calc(100vh - var(--nav-height));
@@ -78,7 +78,7 @@ const PrimaryButton = styled(Link)`
   }
 `;
 
-const SecondaryButton = styled(Link)`
+const SecondaryButton = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -135,8 +135,8 @@ export default function Hero() {
           <PrimaryButton href="/projects">
             View My Work <ArrowRight size={20} />
           </PrimaryButton>
-          <SecondaryButton href="/contact">
-            Contact Me
+          <SecondaryButton href="/resume/Thamarai-selvan-G-dev.pdf" target="_blank" rel="noopener noreferrer">
+            Download Resume <Download size={20} />
           </SecondaryButton>
         </ButtonGroup>
       </HeroContainer>

@@ -105,7 +105,7 @@ export default function ArcMarquee({ items, children }: ArcMarqueeProps) {
               key={item.name}
               $angle={angle}
               style={{
-                transform: `translate(${x}px, ${y}px) rotate(${angle + 90}deg)`,
+                transform: `translate(${x.toFixed(3)}px, ${y.toFixed(3)}px) rotate(${(angle + 90).toFixed(3)}deg)`,
               }}
             >
               <IconContainer
