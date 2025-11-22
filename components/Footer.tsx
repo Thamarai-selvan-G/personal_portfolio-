@@ -208,20 +208,18 @@ export default function Footer() {
 
         <TopSection>
           <BrandSection>
-            <Logo>Thamarai selvan<span>.</span></Logo>
+            <Logo>Thamarai selvan <span>.</span></Logo>
             <Bio>
               A passionate Full Stack Developer crafting digital experiences with modern technologies and creative design.
             </Bio>
             <SocialLinks>
-              <SocialButton href="https://github.com" target="_blank" aria-label="GitHub">
+              <SocialButton href="https://github.com/Thamarai-selvan-G" target="_blank" aria-label="GitHub">
                 <Github size={20} />
               </SocialButton>
               <SocialButton href="https://www.linkedin.com/in/thamaraiselvan08" target="_blank" aria-label="LinkedIn">
                 <Linkedin size={20} />
               </SocialButton>
-              <SocialButton href="https://twitter.com" target="_blank" aria-label="Twitter">
-                <Twitter size={20} />
-              </SocialButton>
+           
               <SocialButton href="mailto:thamaraiselvan878@gmail.com" aria-label="Email">
                 <Mail size={20} />
               </SocialButton>

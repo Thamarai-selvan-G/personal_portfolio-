@@ -169,11 +169,7 @@ export default function ProjectCard({ title, description, tags, demoLink, github
                 <ExternalLink size={16} /> Live Demo
               </ProjectLink>
             )}
-            {githubLink && (
-              <ProjectLink href={githubLink} target="_blank">
-                <Github size={16} /> Code
-              </ProjectLink>
-            )}
+            
           </Links>
         </Content>
       </CardInner>

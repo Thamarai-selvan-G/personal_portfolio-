@@ -67,7 +67,7 @@ const projects = [
     tags: ["Next.js", "Styled Components", "Firebase", "Framer Motion"],
     category: "web",
     demoLink: "#",
-    githubLink: "#"
+  
   },
   {
     title: "Solar Company Portfolio",
@@ -75,15 +75,15 @@ const projects = [
     tags: ["Next.js", "Styled Components"],
     category: "web",
     demoLink: "#",
-    githubLink: "#"
+  
   },
   {
     title: "Financial Admin Panel",
     description: "Web-based admin dashboard for managing a financial mobile application's data and users.",
-    tags: ["React JS", "Redux", "REST API"],
+    tags: ["React JS", "REST API","React Strap"],
     category: "web",
     demoLink: "#",
-    githubLink: "#"
+    
   },
   {
     title: "Glowtune",
@@ -91,7 +91,6 @@ const projects = [
     tags: ["React Native", "Supabase", "Firebase", "Push Notifications"],
     category: "mobile",
     demoLink: "#",
-    githubLink: "#"
   },
   {
     title: "Townbus",
@@ -99,7 +98,7 @@ const projects = [
     tags: ["React Native", "Firebase", "Admob", "REST APIs"],
     category: "mobile",
     demoLink: "#",
-    githubLink: "#"
+    
   }
 ];
 
