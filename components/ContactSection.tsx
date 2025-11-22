@@ -1,191 +1,249 @@
 'use client';
 
 import styled from 'styled-components';
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { Mail, Phone, Linkedin } from 'lucide-react';
-import { MouseEvent } from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, Linkedin, ArrowUpRight } from 'lucide-react';
 
 const Section = styled.section`
-  padding: 80px 24px;
-  max-width: 1000px;
+  padding: 100px 24px;
+  max-width: 1200px;
   margin: 0 auto;
-  min-height: 60vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
-const Title = styled(motion.h2)`
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 64px;
+const Header = styled(motion.div)`
   text-align: center;
-  color: var(--text-primary);
+  margin-bottom: 80px;
+`;
+
+const Title = styled.h2`
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   
-  span {
-    color: var(--primary);
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
   }
 `;
 
-const ContactGrid = styled.div`
+const Subtitle = styled.p`
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 32px;
   width: 100%;
-  max-width: 900px;
+  padding: 20px;
 `;
 
-const CardWrapper = styled(motion.div)`
+const CardContent = styled.div`
   position: relative;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 1px; // For border
-  overflow: hidden;
-`;
-
-const Glow = styled(motion.div)`
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(109, 40, 217, 0.4),
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.3s;
-  
-  ${CardWrapper}:hover & {
-    opacity: 1;
-  }
-`;
-
-const ContactCard = styled.a`
-  background: var(--surface);
-  padding: 48px 24px;
-  border-radius: 15px; // Slightly less than wrapper
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-  position: relative;
-  z-index: 1;
-  height: 100%;
-
-  &:hover {
-    background: var(--surface-light);
-    
-    .icon-wrapper {
-      background: var(--primary);
-      color: white;
-      transform: scale(1.1);
-    }
-  }
+  gap: 20px;
+  text-align: center;
 `;
 
-const IconWrapper = styled.div`
+const IconBox = styled(motion.div)`
   width: 80px;
   height: 80px;
-  background: rgba(109, 40, 217, 0.1);
-  border-radius: 50%;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary);
-  font-size: 2rem;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(4px);
+  margin-bottom: 10px;
 `;
 
-const Label = styled.h3`
+const CardTitle = styled.h3`
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-primary);
 `;
 
-const Value = styled.p`
+const CardValue = styled.p`
   color: var(--text-secondary);
   font-size: 1.1rem;
-  text-align: center;
+  line-height: 1.6;
 `;
 
-function SpotlightCard({ href, icon, label, value, delay, target }: any) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+const ActionLink = styled(motion.div)`
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+`;
 
-  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
+const Card = styled(motion.a)`
+  position: relative;
+  padding: 48px 32px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y),
+      rgba(109, 40, 217, 0.15),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
   }
 
+  &:hover {
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+`;
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 12
+    }
+  }
+};
+
+const iconVariants = {
+  hover: {
+    scale: 1.1,
+    rotate: 5,
+    transition: { type: "spring" as const, stiffness: 300 }
+  }
+};
+
+interface ContactCardProps {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  href: string;
+  action: string;
+}
+
+function ContactCard({ icon, title, value, href, action }: ContactCardProps) {
   return (
-    <CardWrapper
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      onMouseMove={handleMouseMove}
-      style={{
-        // @ts-ignore
-        "--mouse-x": useMotionTemplate`${mouseX}px`,
-        "--mouse-y": useMotionTemplate`${mouseY}px`,
+    <Card
+      href={href}
+      target={href.startsWith('http') ? '_blank' : undefined}
+      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      variants={cardVariants}
+      whileHover={{ y: -10 }}
+      onMouseMove={(e: React.MouseEvent<HTMLAnchorElement>) => {
+        const { left, top } = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - left}px`);
+        e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - top}px`);
       }}
     >
-      <Glow />
-      <ContactCard href={href} target={target}>
-        <IconWrapper className="icon-wrapper">
+      <CardContent>
+        <IconBox variants={iconVariants}>
           {icon}
-        </IconWrapper>
-        <Label>{label}</Label>
-        <Value>{value}</Value>
-      </ContactCard>
-    </CardWrapper>
+        </IconBox>
+        <CardTitle>{title}</CardTitle>
+        <CardValue>{value}</CardValue>
+        <ActionLink>
+          {action} <ArrowUpRight size={16} />
+        </ActionLink>
+      </CardContent>
+    </Card>
   );
 }
 
 export default function ContactSection() {
   return (
     <Section id="contact">
-      <Title
+      <Header
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6 }}
       >
-        Get in <span>Touch</span>
-      </Title>
-      
-      <ContactGrid>
-        <SpotlightCard 
-          href="tel:8220494482"
+        <Title>Let's Work Together</Title>
+        <Subtitle>
+          Have a project in mind? I'd love to hear about it. 
+          Get in touch and let's create something amazing.
+        </Subtitle>
+      </Header>
+
+      <Grid as={motion.div}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <ContactCard
           icon={<Phone size={32} />}
-          label="Phone"
+          title="Phone"
           value="+91 82204 94482"
-          delay={0.1}
+          href="tel:8220494482"
+          action="Call Now"
         />
-
-        <SpotlightCard 
-          href="mailto:thamaraiselvan878@gmail.com"
+        <ContactCard
           icon={<Mail size={32} />}
-          label="Email"
+          title="Email"
           value="thamaraiselvan878@gmail.com"
-          delay={0.2}
+          href="mailto:thamaraiselvan878@gmail.com"
+          action="Send Email"
         />
-
-        <SpotlightCard 
-          href="https://www.linkedin.com/in/thamaraiselvan08"
-          target="_blank"
+        <ContactCard
           icon={<Linkedin size={32} />}
-          label="LinkedIn"
+          title="LinkedIn"
           value="Connect on LinkedIn"
-          delay={0.3}
+          href="https://www.linkedin.com/in/thamaraiselvan08"
+          action="View Profile"
         />
-      </ContactGrid>
+      </Grid>
     </Section>
   );
 }
