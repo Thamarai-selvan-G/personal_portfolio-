@@ -1,9 +1,10 @@
 'use client';
 
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Download, Sparkles, Code2, Terminal } from 'lucide-react';
+import { ArrowRight, Download, Sparkles, Code2, Terminal, Cpu, Globe } from 'lucide-react';
 
 const HeroSection = styled.section`
   min-height: calc(100vh - var(--nav-height));
@@ -206,22 +207,31 @@ const VisualWrapper = styled(motion.div)`
   display: none;
   justify-content: center;
   align-items: center;
+  perspective: 1000px;
+  height: 400px;
   
   @media (min-width: 968px) {
     display: flex;
   }
 `;
 
+const TiltContainer = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  transform-style: preserve-3d;
+  z-index: 10;
+`;
+
 const AbstractCard = styled(motion.div)`
-  background: rgba(20, 20, 20, 0.6);
+  background: rgba(20, 20, 20, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   padding: 2rem;
   width: 100%;
-  max-width: 400px;
   backdrop-filter: blur(20px);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  position: relative;
+  transform-style: preserve-3d;
   
   &::before {
     content: '';
@@ -237,9 +247,23 @@ const AbstractCard = styled(motion.div)`
   }
 `;
 
+const GlowEffect = styled(motion.div)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(var(--primary-rgb), 0.2) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(40px);
+  z-index: -1;
+  opacity: 0.5;
+`;
+
 const CodeWindow = styled.div`
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
+  transform: translateZ(20px);
   
   .header {
     display: flex;
@@ -257,39 +281,123 @@ const CodeWindow = styled.div`
     }
   }
 
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
   .line {
     display: flex;
     gap: 1rem;
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
+    opacity: 0.9;
+    min-height: 1.5em;
     
     span:first-child {
       color: var(--text-secondary);
       user-select: none;
+      width: 20px;
+      text-align: right;
     }
   }
 
   .keyword { color: #c678dd; }
   .function { color: #61afef; }
   .string { color: #98c379; }
-  .comment { color: #5c6370; font-style: italic; }
+  .boolean { color: #d19a66; }
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--primary);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 `;
 
-const FloatingIcon = styled(motion.div)`
+const OrbitPath = styled(motion.div)`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+`;
+
+const OrbitIcon = styled(motion.div)`
+  position: absolute;
+  width: 40px;
+  height: 40px;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  padding: 1rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  z-index: 2;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 20;
 `;
 
+const TypewriterText = ({ text, delay = 0, onComplete }: { text: string, delay?: number, onComplete?: () => void }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      let currentIndex = 0;
+      const interval = setInterval(() => {
+        if (currentIndex <= text.length) {
+          setDisplayedText(text.slice(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(interval);
+          if (onComplete) onComplete();
+        }
+      }, 30); // Typing speed
+      
+      return () => clearInterval(interval);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [text, delay, onComplete]);
+
+  return <span dangerouslySetInnerHTML={{ __html: displayedText }} />;
+};
+
 export default function Hero() {
+  // Tilt Logic
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseX = useSpring(x, { stiffness: 150, damping: 15 });
+  const mouseY = useSpring(y, { stiffness: 150, damping: 15 });
+  
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <HeroSection className="container">
       <Container>
@@ -344,60 +452,92 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <AbstractCard
-            animate={{ y: [0, -20, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <CodeWindow>
-              <div className="header">
-                <div />
-                <div />
-                <div />
-              </div>
-              <div className="content">
-                <div className="line">
-                  <span>1</span>
-                  <span><span className="keyword">const</span> <span className="function">Developer</span> = &#123;</span>
-                </div>
-                <div className="line">
-                  <span>2</span>
-                  <span>&nbsp;&nbsp;name: <span className="string">'Thamarai selvan'</span>,</span>
-                </div>
-                <div className="line">
-                  <span>3</span>
-                  <span>&nbsp;&nbsp;role: <span className="string">'Fullstack Dev'</span>,</span>
-                </div>
-                <div className="line">
-                  <span>4</span>
-                  <span>&nbsp;&nbsp;skills: [<span className="string">'React. js'</span>, <span className="string">'Next.js'</span>, <span className="string">'React native'</span>],</span>
-                </div>
-                <div className="line">
-                  <span>5</span>
-                  <span>&nbsp;&nbsp;hardWorker: <span className="keyword">true</span></span>
-                </div>
-                <div className="line">
-                  <span>6</span>
-                  <span>&#125;;</span>
-                </div>
-              </div>
-            </CodeWindow>
-          </AbstractCard>
+          <GlowEffect 
+            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          />
 
-          <FloatingIcon
-            style={{ top: '-20px', right: '20px' }}
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          >
-            <Code2 size={32} />
-          </FloatingIcon>
+          {/* Orbiting Icons */}
+          <OrbitPath style={{ width: '500px', height: '500px' }} animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
+            <OrbitIcon style={{ top: '0', left: '50%', transform: 'translate(-50%, -50%) rotate(-360deg)' }}>
+              <Code2 size={20} />
+            </OrbitIcon>
+          </OrbitPath>
+          
+          <OrbitPath style={{ width: '600px', height: '600px' }} animate={{ rotate: -360 }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}>
+            <OrbitIcon style={{ top: '50%', right: '0', transform: 'translate(50%, -50%)' }}>
+              <Terminal size={20} />
+            </OrbitIcon>
+          </OrbitPath>
 
-          <FloatingIcon
-            style={{ bottom: '-20px', left: '20px' }}
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          <TiltContainer
+            style={{ rotateX, rotateY }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
-            <Terminal size={32} />
-          </FloatingIcon>
+            <AbstractCard>
+              <CodeWindow>
+                <div className="header">
+                  <div />
+                  <div />
+                  <div />
+                </div>
+                <div className="content">
+                  <div className="line">
+                    <span>1</span>
+                    <span>
+                      <TypewriterText text="<span class='keyword'>const</span> <span class='function'>Developer</span> = {" delay={500} />
+                    </span>
+                  </div>
+                  <div className="line">
+                    <span>2</span>
+                    <span>
+                      <TypewriterText text="&nbsp;&nbsp;name: <span class='string'>'Thamarai'</span>," delay={1500} />
+                    </span>
+                  </div>
+                  <div className="line">
+                    <span>3</span>
+                    <span>
+                      <TypewriterText text="&nbsp;&nbsp;role: <span class='string'>'Fullstack'</span>," delay={2500} />
+                    </span>
+                  </div>
+                  <div className="line">
+                    <span>4</span>
+                    <span>
+                      <TypewriterText text="&nbsp;&nbsp;skills: [<span class='string'>'React Native'</span>, <span class='string'>'Next JS'</span>]," delay={3500} />
+                    </span>
+                  </div>
+                  <div className="line">
+                    <span>5</span>
+                    <span>
+                      <TypewriterText text="&nbsp;&nbsp;hardWorker: <span class='boolean'>true</span>" delay={4500} />
+                    </span>
+                  </div>
+                  <div className="line">
+                    <span>6</span>
+                    <span>
+                      <TypewriterText text="};" delay={5500} />
+                      <span className="cursor" />
+                    </span>
+                  </div>
+                </div>
+              </CodeWindow>
+            </AbstractCard>
+            
+            {/* Floating Elements attached to the card 3D space */}
+            <motion.div style={{ position: 'absolute', top: -20, right: -20, transform: 'translateZ(40px)' }}>
+              <OrbitIcon>
+                <Cpu size={20} />
+              </OrbitIcon>
+            </motion.div>
+            
+            <motion.div style={{ position: 'absolute', bottom: -20, left: -20, transform: 'translateZ(40px)' }}>
+              <OrbitIcon>
+                <Globe size={20} />
+              </OrbitIcon>
+            </motion.div>
+
+          </TiltContainer>
         </VisualWrapper>
       </Container>
     </HeroSection>
