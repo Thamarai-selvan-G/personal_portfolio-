@@ -13,8 +13,17 @@ const HeroSection = styled.section`
   justify-content: center;
   padding: 4rem 0;
   position: relative;
+  position: relative;
+  /* overflow: hidden; - Removed to allow icons to float outside */
+`;
+
+const BackgroundGradient = styled.div`
+  position: absolute;
+  inset: 0;
   overflow: hidden;
-  
+  z-index: -1;
+  pointer-events: none;
+
   /* Background decorative elements */
   &::before {
     content: '';
@@ -25,7 +34,6 @@ const HeroSection = styled.section`
     height: 500px;
     background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, rgba(0,0,0,0) 70%);
     border-radius: 50%;
-    z-index: -1;
     filter: blur(60px);
   }
 
@@ -38,7 +46,6 @@ const HeroSection = styled.section`
     height: 400px;
     background: radial-gradient(circle, rgba(var(--secondary-rgb), 0.1) 0%, rgba(0,0,0,0) 70%);
     border-radius: 50%;
-    z-index: -1;
     filter: blur(60px);
   }
 `;
@@ -61,6 +68,7 @@ const Container = styled.div`
     grid-template-columns: 1.2fr 0.8fr;
   }
 `;
+
 
 const ContentWrapper = styled(motion.div)`
   display: flex;
@@ -407,6 +415,7 @@ export default function Hero() {
 
   return (
     <HeroSection className="container">
+      <BackgroundGradient />
       <Container>
         <ContentWrapper
           initial={{ opacity: 0, x: -50 }}
@@ -435,7 +444,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-           I'm Thamarai Selvan, a Fullstack Developer building web and mobile apps, exploring backend development with Supabase, and always motivated to learn from people around me and achieve more in this field.
+           I'm Thamarai Selvan 👋, a Fullstack Developer building web and mobile apps, exploring backend development with Supabase, and always motivated to learn from people around me and achieve more in this field.
           </Description>
           
           <ButtonGroup
