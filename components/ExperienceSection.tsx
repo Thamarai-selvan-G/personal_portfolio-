@@ -1,13 +1,13 @@
 'use client';
 
 import styled from 'styled-components';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Briefcase, Calendar, Code2 } from 'lucide-react';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { Briefcase, Calendar, Code2, Sparkles, TrendingUp } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
 
 const Section = styled.section`
-  padding: 100px 24px;
-  max-width: 1200px;
+  padding: 120px 24px;
+  max-width: 1400px;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -15,34 +15,58 @@ const Section = styled.section`
   justify-content: center;
   position: relative;
   overflow: hidden;
+  perspective: 2000px;
 `;
 
-const BackgroundGlow = styled.div`
+const AnimatedGrid = styled.div`
   position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-  opacity: 0.05;
-  filter: blur(100px);
-  z-index: 0;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: rotateX(60deg) scale(2);
+  transform-origin: center center;
+  animation: gridMove 20s linear infinite;
+  opacity: 0.6;
+  
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+  }
+`;
+
+const FloatingOrb = styled(motion.div)<{ $color: string; $size: number }>`
+  position: absolute;
+  width: ${props => props.$size}px;
+  height: ${props => props.$size}px;
+  border-radius: 50%;
+  background: radial-gradient(circle, ${props => props.$color}40 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
 `;
 
 const Title = styled(motion.h2)`
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 80px;
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 20px;
   text-align: center;
   color: var(--text-primary);
   position: relative;
-  z-index: 1;
+  z-index: 10;
+  letter-spacing: -2px;
   
   span {
-    background: linear-gradient(135deg, var(--primary) 0%, #fff 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #fff 50%, var(--primary) 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   @media (max-width: 768px) {
@@ -50,148 +74,124 @@ const Title = styled(motion.h2)`
   }
 `;
 
-const TimelineContainer = styled.div`
+const Subtitle = styled(motion.p)`
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 80px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 10;
   position: relative;
-  max-width: 1000px;
+`;
+
+const CardsContainer = styled.div`
+  position: relative;
+  max-width: 900px;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 10;
+  width: 100%;
 `;
 
-const TimelineLine = styled(motion.div)`
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, 
-    transparent 0%, 
-    var(--primary) 15%, 
-    var(--primary) 85%, 
-    transparent 100%
-  );
-  opacity: 0.3;
-  
-  @media (min-width: 768px) {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-`;
-
-const TimelineItem = styled(motion.div)`
-  position: relative;
-  margin-bottom: 60px;
-  padding-left: 40px;
-  
-  @media (min-width: 768px) {
-    padding-left: 0;
-    width: 50%;
-    margin-left: auto;
-    padding-left: 50px;
-    
-    &:nth-child(even) {
-      margin-left: 0;
-      padding-left: 0;
-      padding-right: 50px;
-      text-align: right;
-      
-      .content-wrapper {
-        align-items: flex-end;
-      }
-      
-      .tech-stack {
-        justify-content: flex-end;
-      }
-
-      .dot-container {
-        left: auto;
-        right: -50px;
-        transform: translateX(50%);
-      }
-    }
-  }
-`;
-
-const DotContainer = styled(motion.div)`
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  
-  @media (min-width: 768px) {
-    left: -50px; // Adjust based on padding
-  }
-`;
-
-const Dot = styled.div`
-  width: 16px;
-  height: 16px;
-  background: var(--primary);
-  border-radius: 50%;
-  box-shadow: 0 0 20px var(--primary);
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    opacity: 0.5;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-    100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
-  }
-`;
-
-const Card = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 32px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+const MagneticCard = styled(motion.div)<{ $isHovered: boolean }>`
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 48px;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
-
+  margin-bottom: 40px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    inset: 0;
+    border-radius: 32px;
+    padding: 2px;
+    background: linear-gradient(135deg, 
+      var(--primary) 0%, 
+      transparent 50%, 
+      var(--primary) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: ${props => props.$isHovered ? 1 : 0};
+    transition: opacity 0.3s ease;
   }
 
-  &:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 40px -10px rgba(var(--primary-rgb), 0.15);
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+  }
+
+  &:hover::after {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+
+  @media (max-width: 768px) {
+    padding: 32px;
   }
 `;
 
+const CardGlow = styled(motion.div)`
+  position: absolute;
+  inset: -2px;
+  border-radius: 32px;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--primary-rgb), 0.15),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+`;
+
+const CardHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 20px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const RoleSection = styled.div`
+  flex: 1;
+`;
+
 const Role = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   color: #fff;
-  margin-bottom: 8px;
-  line-height: 1.3;
+  margin-bottom: 12px;
+  line-height: 1.2;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Company = styled.div`
@@ -199,58 +199,96 @@ const Company = styled.div`
   align-items: center;
   gap: 10px;
   color: var(--primary);
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
   
   svg {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 `;
 
-const Period = styled.div`
+const Badge = styled(motion.div)`
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 20px;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.2) 0%, rgba(var(--primary-rgb), 0.05) 100%);
   border-radius: 100px;
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+  white-space: nowrap;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 const Description = styled.p`
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 24px;
-  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 32px;
+  font-size: 1.05rem;
 `;
 
 const TechStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  margin-top: 24px;
+`;
+
+const TechTag = styled(motion.span)`
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
   
-  &.right-aligned {
-    justify-content: flex-end;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
   }
 `;
 
-const TechTag = styled.span`
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: 100px;
+const FloatingIcon = styled(motion.div)<{ $index: number }>`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(var(--primary-rgb), 0.1);
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
   color: var(--primary);
-  border: 1px solid rgba(var(--primary-rgb), 0.2);
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: rgba(var(--primary-rgb), 0.2);
-    transform: translateY(-2px);
-  }
+  font-size: 20px;
+  pointer-events: none;
+  
+  ${props => {
+    const positions = [
+      { top: '10%', right: '5%' },
+      { top: '30%', left: '5%' },
+      { bottom: '20%', right: '8%' },
+    ];
+    return positions[props.$index % 3];
+  }}
 `;
 
 const experiences = [
@@ -258,68 +296,193 @@ const experiences = [
     role: "Fullstack Web & Mobile App Developer",
     company: "itboomi innovations",
     period: "1 Year Experience",
-    description: "Working on full-cycle development of web and mobile applications. Collaborating with design and marketing teams to deliver high-quality products. Leading the migration of legacy systems to modern tech stacks.",
-    tech: ["React", "Next.js", "React Native", "Supabase", "TypeScript", "Tailwind"]
+    description: "Leading full-cycle development of cutting-edge web and mobile applications. Collaborating with cross-functional teams to deliver high-quality, scalable products. Spearheading the migration of legacy systems to modern tech stacks, improving performance and user experience.",
+    tech: ["React", "Next.js", "React Native", "Supabase", "TypeScript", "Tailwind CSS"],
+    highlights: ["10+ Projects Delivered", "Performance Optimization", "Team Leadership"]
   }
 ];
 
 export default function ExperienceSection() {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    setMousePosition({ x, y });
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
     <Section id="experience" ref={containerRef}>
-      <BackgroundGlow />
+      <AnimatedGrid />
+      
+      <FloatingOrb
+        $color="var(--primary)"
+        $size={400}
+        style={{ y: y1, top: '10%', left: '10%' }}
+      />
+      <FloatingOrb
+        $color="#6366f1"
+        $size={300}
+        style={{ y: y2, bottom: '20%', right: '15%' }}
+      />
+      <FloatingOrb
+        $color="var(--primary)"
+        $size={350}
+        style={{ y: y3, top: '50%', right: '5%' }}
+      />
       
       <Title
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        My <span>Experience</span> Journey
+      </Title>
+      
+      <Subtitle
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+        transition={{ duration: 0.8, delay: 0.2 }}
       >
-        My <span>Experience</span>
-      </Title>
+        Building innovative solutions and pushing boundaries in web & mobile development
+      </Subtitle>
       
-      <TimelineContainer>
-        <TimelineLine style={{ scaleY: scrollYProgress }} />
-        
+      <CardsContainer>
         {experiences.map((exp, index) => (
-          <TimelineItem
+          <MagneticCard
             key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            $isHovered={hoveredCard === index}
+            initial={{ opacity: 0, y: 100, rotateX: 10 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.2,
+              type: "spring",
+              stiffness: 100
+            }}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { duration: 0.3 }
+            }}
+            onMouseMove={(e) => handleMouseMove(e, index)}
+            onMouseEnter={() => setHoveredCard(index)}
+            onMouseLeave={() => setHoveredCard(null)}
           >
-            <DotContainer className="dot-container">
-              <Dot />
-            </DotContainer>
+            <CardGlow 
+              style={{ 
+                opacity: hoveredCard === index ? 1 : 0 
+              }} 
+            />
             
-            <div className="content-wrapper" style={{ display: 'flex', flexDirection: 'column' }}>
-              <Card>
+            <FloatingIcon
+              $index={0}
+              animate={{ 
+                y: [0, -10, 0],
+                rotate: [0, 5, 0]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <Code2 size={20} />
+            </FloatingIcon>
+            
+            <FloatingIcon
+              $index={1}
+              animate={{ 
+                y: [0, 10, 0],
+                rotate: [0, -5, 0]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+            >
+              <Sparkles size={20} />
+            </FloatingIcon>
+            
+            <FloatingIcon
+              $index={2}
+              animate={{ 
+                y: [0, -8, 0],
+                rotate: [0, 8, 0]
+              }}
+              transition={{ 
+                duration: 3.5, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            >
+              <TrendingUp size={20} />
+            </FloatingIcon>
+            
+            <CardHeader>
+              <RoleSection>
                 <Role>{exp.role}</Role>
                 <Company>
-                  <Briefcase size={18} /> {exp.company}
+                  <Briefcase size={20} />
+                  {exp.company}
                 </Company>
-                <Period>
-                  <Calendar size={14} /> {exp.period}
-                </Period>
-                <Description>
-                  {exp.description}
-                </Description>
-                <TechStack className="tech-stack">
-                  {exp.tech.map((tech, i) => (
-                    <TechTag key={i}>{tech}</TechTag>
-                  ))}
-                </TechStack>
-              </Card>
-            </div>
-          </TimelineItem>
+              </RoleSection>
+              
+              <Badge
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Calendar size={16} />
+                {exp.period}
+              </Badge>
+            </CardHeader>
+            
+            <Description>{exp.description}</Description>
+            
+            <TechStack>
+              {exp.tech.map((tech, i) => (
+                <TechTag
+                  key={i}
+                  whileHover={{ 
+                    scale: 1.1,
+                    y: -2
+                  }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  {tech}
+                </TechTag>
+              ))}
+            </TechStack>
+          </MagneticCard>
         ))}
-      </TimelineContainer>
+      </CardsContainer>
     </Section>
   );
 }
