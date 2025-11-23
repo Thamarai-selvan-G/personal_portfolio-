@@ -260,7 +260,7 @@ export default function AboutSection() {
             
             <p>
               My journey in software development has allowed me to work across the full development workflow, 
-              from <Highlight>design collaboration</Highlight> to <Highlight>backend API integration</Highlight> and 
+              from <Highlight>design collaboration</Highlight> to <Highlight>backend API integration</Highlight> and {""}
               <Highlight>marketing team coordination</Highlight>. I thrive in dynamic environments where I can solve complex problems 
               and deliver tangible results.
             </p>

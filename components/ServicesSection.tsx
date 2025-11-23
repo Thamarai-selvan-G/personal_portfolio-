@@ -91,26 +91,26 @@ const services = [
     description: 'Creating native-like mobile experiences for iOS and Android using React Native.',
     icon: <Smartphone size={40} className="icon" />
   },
-  {
-    title: 'Backend Development',
-    description: 'Designing robust APIs and server-side logic with Node.js, Supabase, and Firebase.',
-    icon: <Server size={40} className="icon" />
-  },
-  {
-    title: 'UI/UX Design',
-    description: 'Crafting intuitive and visually appealing user interfaces with a focus on user experience.',
-    icon: <Palette size={40} className="icon" />
-  },
-  {
-    title: 'Fullstack Solutions',
-    description: 'End-to-end development from database design to frontend implementation.',
-    icon: <Globe size={40} className="icon" />
-  },
-  {
-    title: 'Database Management',
-    description: 'Efficient data modeling and management using SQL and NoSQL databases.',
-    icon: <Database size={40} className="icon" />
-  }
+  // {
+  //   title: 'Backend Development',
+  //   description: 'Designing robust APIs and server-side logic with Node.js, Supabase, and Firebase.',
+  //   icon: <Server size={40} className="icon" />
+  // },
+  // {
+  //   title: 'UI/UX Design',
+  //   description: 'Crafting intuitive and visually appealing user interfaces with a focus on user experience.',
+  //   icon: <Palette size={40} className="icon" />
+  // },
+  // {
+  //   title: 'Fullstack Solutions',
+  //   description: 'End-to-end development from database design to frontend implementation.',
+  //   icon: <Globe size={40} className="icon" />
+  // },
+  // {
+  //   title: 'Database Management',
+  //   description: 'Efficient data modeling and management using SQL and NoSQL databases.',
+  //   icon: <Database size={40} className="icon" />
+  // }
 ];
 
 export default function ServicesSection() {

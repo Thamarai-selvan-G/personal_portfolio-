@@ -87,7 +87,6 @@ const MobileMenu = styled(motion.div)`
 const navItems = [
   { name: 'Home', path: '#' },
   { name: 'About', path: '#about' },
-  { name: 'Services', path: '#services' },
   { name: 'Skills', path: '#skills' },
   { name: 'Experience', path: '#experience' },
   { name: 'Projects', path: '#projects' },

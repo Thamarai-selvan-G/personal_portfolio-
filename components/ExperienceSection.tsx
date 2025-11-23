@@ -296,8 +296,8 @@ const experiences = [
     role: "Fullstack Web & Mobile App Developer",
     company: "itboomi innovations",
     period: "1 Year Experience",
-    description: "Leading full-cycle development of cutting-edge web and mobile applications. Collaborating with cross-functional teams to deliver high-quality, scalable products. Spearheading the migration of legacy systems to modern tech stacks, improving performance and user experience.",
-    tech: ["React", "Next.js", "React Native", "Supabase", "TypeScript", "Tailwind CSS"],
+    description: `Driving end-to-end development across web, mobile, and backend services at Itboomi. Collaborating closely with talented teams and working through the full product lifecycle, contributing as both a developer and a product owner.`,
+    tech: ["React", "Next.js", "React Native", "Supabase", "Firebase"],
     highlights: ["10+ Projects Delivered", "Performance Optimization", "Team Leadership"]
   }
 ];

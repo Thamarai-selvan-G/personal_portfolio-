@@ -152,48 +152,112 @@ const MasonryGrid = styled(motion.div)`
 
 const projects = [
   {
-    title: "IT Development Portfolio",
-    description: "A comprehensive portfolio website for an IT development company showcasing services and case studies.",
+    title: "IT Services Company Website",
+    description:
+      "A professional corporate website built for an IT development company to showcase services, technology expertise, and successful client case studies. Designed for high performance, SEO, and lead generation.",
     tags: ["Next.js", "Styled Components", "Firebase", "Framer Motion"],
     category: "web",
-    demoLink: "#"
+    demoLink: "https://itboomi.com/"
   },
   {
-    title: "Solar Company Portfolio",
-    description: "Modern portfolio site for a solar energy company highlighting projects and green energy solutions.",
+    title: "Solar Energy Solutions Portfolio",
+    description:
+      "A modern portfolio platform for a solar energy business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
     tags: ["Next.js", "Styled Components"],
     category: "web",
     demoLink: "#"
   },
   {
-    title: "Financial Admin Panel",
-    description: "Web-based admin dashboard for managing a financial mobile application's data and users.",
-    tags: ["React JS", "REST API", "React Strap"],
-    category: "web",
-    demoLink: "#"
-  },
+  title: "Land Survey CRM & Admin Panel",
+  description:
+    "An enterprise-level admin application built for a Land Survey company to manage branch operations across Tamil Nadu. The system includes employee management, project/task tracking, customer enquiries handling, and work progress monitoring. Features role-based access control, secure data workflows, and an intuitive UI for operational efficiency.",
+  tags: ["React JS", "REST API", "React Strap"],
+  category: "web",
+  demoLink: "https://massive-thunder-d91.notion.site/Land-Survey-Gallery-view-2b445788299e80c882d2c4f5e0c42598?source=copy_link"
+}
+,
   {
-    title: "Glowtune",
-    description: "Personal skincare coach app with 100+ downloads. Features routine tracking and personalized advice.",
+    title: "GlowTune — AI-Based Skincare Coach App",
+    description:
+      "A personal skincare mobile application with AI-powered routine generation, progress tracking, and push notifications. Built using Supabase backend and integrated analytics. Cross-platform with 100+ active users.",
     tags: ["React Native", "Supabase", "Firebase", "Push Notifications"],
     category: "mobile",
-    demoLink: "#"
+    demoLink: "https://play.google.com/store/apps/details?id=com.itboomi.glowtune&hl=en_IN"
   },
   {
-    title: "Townbus",
-    description: "Local utility app providing bus timings, leader details, and shopping info.",
-    tags: ["React Native", "Firebase", "Admob", "REST APIs"],
+    title: "TownBus — Local Utility & Transport App",
+    description:
+      "A mobile solution offering real-time bus schedules, regional leader information, and local shopping directory. Includes Firebase backend and AdMob monetization.",
+    tags: ["React Native", "Firebase", "AdMob", "REST APIs"],
     category: "mobile",
-    demoLink: "#"
+    demoLink: "https://play.google.com/store/search?q=townbus+app&c=apps&hl=en_IN"
   },
   {
-    title: "Explore More",
-    description: "I've worked on dozens of other projects. Check out my GitHub to see the rest of my portfolio.",
-    tags: ["Open Source", "Experiments", "Contributions"],
-    category: "more",
-    demoLink: "https://github.com/Thamarai-selvan-G"
-  }
+  title: "Notefy — AI-Powered Smart Notes App",
+  description:
+    "A productivity-focused note-taking mobile app powered by AI to help users generate, organize, and summarize notes efficiently. Features include cloud sync, smart reminders, categorization, and secure Supabase storage. Currently live on the Play Store with 200+ downloads.",
+  tags: ["React Native", "Supabase", "Firebase", "AI Integration"],
+  category: "mobile",
+  demoLink: "https://play.google.com/store/search?q=notefy&c=apps&hl=en_IN" 
+}
+,
+  // {
+  //   title: "Explore More Work",
+  //   description:
+  //     "I have built multiple experimental apps, UI components, and open-source tools across Web, Mobile, and Backend systems. Visit my GitHub to explore more projects and contributions.",
+  //   tags: ["Open Source", "Experiments", "Contributions"],
+  //   category: "more",
+  //   demoLink: "https://github.com/Thamarai-selvan-G"
+  // }
 ];
+
+
+// const projects = [
+//   {
+//     title: "Enterprise IT Solutions Portfolio",
+//     description: "A comprehensive portfolio website for showcasing advanced IT development services and successful case studies for enterprise clients.",
+//     tags: ["Next.js", "Styled Components", "Firebase", "Framer Motion"],
+//     category: "web",
+//     demoLink: "#"
+//   },
+//   {
+//     title: "Solar Energy Solutions Portfolio",
+//     description: "Modern portfolio site highlighting innovative solar energy projects and sustainable green energy solutions.",
+//     tags: ["Next.js", "Styled Components"],
+//     category: "web",
+//     demoLink: "#"
+//   },
+//   {
+//     title: "Financial CRM Dashboard",
+//     description: "Web-based CRM dashboard designed for managing client data, transactions, and analytics within a financial services mobile application.",
+//     tags: ["React JS", "REST API", "React Strap"],
+//     category: "web",
+//     demoLink: "#"
+//   },
+//   {
+//     title: "Glowtune Skincare Coach",
+//     description: "Personalized skincare coaching mobile app with 100+ downloads, featuring routine tracking, tailored advice, and progress monitoring.",
+//     tags: ["React Native", "Supabase", "Firebase", "Push Notifications"],
+//     category: "mobile",
+//     demoLink: "#"
+//   },
+//   {
+//     title: "Townbus Utility App",
+//     description: "Local utility mobile app delivering real-time bus schedules, community leader contacts, and shopping information for residents.",
+//     tags: ["React Native", "Firebase", "Admob", "REST APIs"],
+//     category: "mobile",
+//     demoLink: "#"
+//   },
+  
+//   {
+//     title: "Expansive Projects & Contributions",
+//     description: "Extensive collection of open source projects, experiments, and contributions. Visit my GitHub to explore the full portfolio.",
+//     tags: ["Open Source", "Experiments", "Contributions"],
+//     category: "more",
+//     demoLink: "https://github.com/Thamarai-selvan-G"
+//   }
+// ];
+
 
 export default function ProjectsSection() {
   const [filter, setFilter] = useState('all');

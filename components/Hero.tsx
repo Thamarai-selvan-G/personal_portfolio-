@@ -426,7 +426,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Building Digital <br />
+          Building Digital  <br />
             <span className="highlight">Experiences</span>
           </Title>
           
@@ -435,9 +435,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            I'm Thamarai Selvan, a Fullstack Developer specializing in building 
-            exceptional digital experiences. I transform complex problems into 
-            elegant, scalable solutions.
+           I'm Thamarai Selvan, a Fullstack Developer building web and mobile apps, exploring backend development with Supabase, and always motivated to learn from people around me and achieve more in this field.
           </Description>
           
           <ButtonGroup
@@ -445,7 +443,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <PrimaryButton href="/projects">
+            <PrimaryButton href="#projects">
               View Projects <ArrowRight size={20} />
             </PrimaryButton>
             <SecondaryButton href="/resume/Thamarai-selvan-G-dev.pdf" target="_blank" rel="noopener noreferrer">

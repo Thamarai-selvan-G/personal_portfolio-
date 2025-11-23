@@ -230,9 +230,9 @@ export default function Footer() {
             <ColumnTitle>Quick Links</ColumnTitle>
             <LinkList>
               <LinkItem><FooterLink href="#about">About</FooterLink></LinkItem>
-              <LinkItem><FooterLink href="#services">Services</FooterLink></LinkItem>
+              <LinkItem><FooterLink href="#skills">Skills</FooterLink></LinkItem>
               <LinkItem><FooterLink href="#projects">Projects</FooterLink></LinkItem>
-              <LinkItem><FooterLink href="#testimonials">Testimonials</FooterLink></LinkItem>
+              <LinkItem><FooterLink href="#experience">Experience</FooterLink></LinkItem>
             </LinkList>
           </Column>
 
@@ -258,7 +258,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Thamarai Selvan. All rights reserved.
           </Copyright>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-            Designed & Built with Thamarai selvan❤️
+            Designed & Built with Thamarai selvan 🖤
           </p>
         </BottomSection>
       </Container>
