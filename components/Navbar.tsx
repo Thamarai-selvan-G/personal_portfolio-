@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import CreativeLogo from './CreativeLogo';
 
 const Nav = styled.nav`
   height: var(--nav-height);
@@ -24,16 +25,7 @@ const NavContainer = styled.div`
   height: 100%;
 `;
 
-const Logo = styled(Link)`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
-  
-  span {
-    color: var(--primary);
-  }
-`;
+
 
 const DesktopMenu = styled.div`
   display: none;
@@ -155,9 +147,9 @@ export default function Navbar() {
   return (
     <Nav>
       <NavContainer className="container">
-        <Logo href="/" onClick={(e) => handleNavClick(e, '#')}>
-          Thamarai<span>.dev</span>
-        </Logo>
+        <Link href="/" onClick={(e) => handleNavClick(e, '#')}>
+          <CreativeLogo />
+        </Link>
 
         <DesktopMenu>
           {navItems.map((item) => (
