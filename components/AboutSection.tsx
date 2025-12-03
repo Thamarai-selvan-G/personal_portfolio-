@@ -67,6 +67,8 @@ const StyledImage = styled(Image)`
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.1);
+  user-select: none;
+  -webkit-user-drag: none;
 `;
 
 const ImageFrame = styled(motion.div)`
@@ -136,6 +138,32 @@ const Highlight = styled.span`
     height: 2px;
     background: var(--primary);
     opacity: 0.5;
+  }
+`;
+
+const RedirectLink = styled.a`
+  color: #fff;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover::after {
+    opacity: 1;
+    height: 3px;
   }
 `;
 
@@ -231,6 +259,8 @@ export default function AboutSection() {
               sizes="(max-width: 768px) 100vw, 50vw"
               priority
               style={{ transform: "translateZ(20px)" }}
+              draggable={false}
+              onContextMenu={(e: React.MouseEvent) => e.preventDefault()}
             />
             <ImageFrame style={{ transform: "translateZ(-40px)" }} />
           </TiltCard>
@@ -254,7 +284,7 @@ export default function AboutSection() {
           >
             <p>
               Hello! I'm <Highlight>Thamarai Selvan</Highlight>, a passionate Fullstack Web & Mobile App Developer based in Tiruppur. 
-              With <Highlight>1 year of professional experience</Highlight> at itboomi innovations, I have honed my skills in building 
+              With <RedirectLink href="#experience">1.3 year of professional experience</RedirectLink> at itboomi innovations, I have honed my skills in building 
               scalable and high-performance applications.
             </p>
             
@@ -266,9 +296,9 @@ export default function AboutSection() {
             </p>
 
             <p>
-              I have successfully completed <Highlight>10+ web applications</Highlight> and <Highlight>5 mobile applications</Highlight>, 
+              I have successfully completed <RedirectLink href="#projects">10+ web applications</RedirectLink> and <RedirectLink href="#projects">5 mobile applications</RedirectLink>, 
               ranging from portfolio sites to complex administrative panels and consumer-facing apps. My technical stack includes 
-              <Highlight>React JS, Next.js, React Native, Supabase, and Firebase</Highlight>, enabling me to build robust fullstack solutions.
+              <RedirectLink href="#skills">React JS, Next.js, React Native, Supabase, and Firebase</RedirectLink>, enabling me to build robust fullstack solutions.
             </p>
           </Content>
 
