@@ -42,12 +42,12 @@ const Author = styled(motion.span)`
 
 const quotes = [
   { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
-  { text: "Experience is the name everyone gives to their mistakes.", author: "Oscar Wilde" },
-  { text: "Java is to JavaScript what car is to Carpet.", author: "Chris Heilmann" },
+  { text: "If you don’t take risks, you can’t create a future.", author: "Luffy" },
+  { text: "A real pro never stops trying new things.", author: "Jiraiya" },
   { text: "Knowledge is power.", author: "Francis Bacon" },
-  { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
+  { text: "Sometimes the only way to go forward is to rewrite the plan.", author: "Michael Scott" },
   { text: "Code is like humor. When you have to explain it, it’s bad.", author: "Cory House" },
-  { text: "Fix the cause, not the symptom.", author: "Steve Maguire" }
+  { text: "Make it simple, but significant.", author: "Don Draper" },
 ];
 
 export default function QuoteCarousel() {
