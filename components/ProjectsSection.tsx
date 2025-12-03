@@ -160,13 +160,21 @@ const projects = [
     demoLink: "https://itboomi.com/"
   },
   {
-    title: "Solar Energy Solutions Portfolio",
+    title: "Engineering Solutions portfolio",
     description:
-      "A modern portfolio platform for a solar energy business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
-    tags: ["Next.js", "Styled Components"],
+      "A modern portfolio platform for a Engineering Solutions business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
+    tags: ["React JS", "Styled Components"],
     category: "web",
-    demoLink: "#"
+    demoLink: "https://austro-engineering.web.app/"
   },
+  // {
+  //   title: "Solar Energy Solutions Portfolio",
+  //   description:
+  //     "A modern portfolio platform for a solar energy business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
+  //   tags: ["Next.js", "Styled Components"],
+  //   category: "web",
+  //   demoLink: "#"
+  // },
   {
   title: "Land Survey CRM & Admin Panel",
   description:
@@ -179,7 +187,7 @@ const projects = [
   {
     title: "GlowTune — AI-Based Skincare Coach App",
     description:
-      "A personal skincare mobile application with AI-powered routine generation, progress tracking, and push notifications. Built using Supabase backend and integrated analytics. Cross-platform with 100+ active users.",
+      "A personal skincare mobile application with AI-powered routine generation, progress tracking, and push notifications. Built using Supabase backend and integrated analytics. Cross-platform with 200+ active users.",
     tags: ["React Native", "Supabase", "Firebase", "Push Notifications"],
     category: "mobile",
     demoLink: "https://play.google.com/store/apps/details?id=com.itboomi.glowtune&hl=en_IN"
@@ -195,7 +203,7 @@ const projects = [
   {
   title: "Notefy — AI-Powered Smart Notes App",
   description:
-    "A productivity-focused note-taking mobile app powered by AI to help users generate, organize, and summarize notes efficiently. Features include cloud sync, smart reminders, categorization, and secure Supabase storage. Currently live on the Play Store with 200+ downloads.",
+    "A productivity-focused note-taking mobile app powered by AI to help users generate, organize, and summarize notes efficiently. Features include cloud sync, smart reminders, categorization, and secure Supabase storage. Currently live on the Play Store with 500+ downloads.",
   tags: ["React Native", "Supabase", "Firebase", "AI Integration"],
   category: "mobile",
   demoLink: "https://play.google.com/store/search?q=notefy&c=apps&hl=en_IN" 

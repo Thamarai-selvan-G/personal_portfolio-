@@ -72,6 +72,9 @@ const skills = [
   { name: 'NPM', icon: <img src="/icons/techStacks/npm.svg" alt="NPM" width={40} height={40} /> },
 ];
 
+const outerSkills = skills.slice(0, 9);
+const innerSkills = skills.slice(9);
+
 export default function SkillsSection() {
   return (
     <Section id="skills">
@@ -88,7 +91,7 @@ export default function SkillsSection() {
       </Header>
       
       <ContentWrapper>
-        <ArcMarquee items={skills}>
+        <ArcMarquee items={outerSkills} innerItems={innerSkills}>
           <QuoteCarousel />
         </ArcMarquee>
       </ContentWrapper>

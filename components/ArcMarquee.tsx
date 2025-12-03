@@ -68,6 +68,12 @@ const Label = styled(motion.span)`
   }
 `;
 
+const CounterRotator = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
 const CenterContent = styled.div`
   position: absolute;
   top: 250px; // Positioned inside the upper part of the circle
@@ -85,11 +91,13 @@ interface ArcMarqueeProps {
   children?: React.ReactNode;
 }
 
-export default function ArcMarquee({ items, children }: ArcMarqueeProps) {
+export default function ArcMarquee({ items, innerItems = [], children }: ArcMarqueeProps & { innerItems?: { name: string; icon: React.ReactNode }[] }) {
   const radius = 600; 
-  
+  const innerRadius = 450; // Smaller radius for inner circle
+
   return (
     <Wrapper>
+      {/* Outer Circle */}
       <Circle
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -105,20 +113,57 @@ export default function ArcMarquee({ items, children }: ArcMarqueeProps) {
               key={item.name}
               $angle={angle}
               style={{
-                transform: `translate(${x.toFixed(3)}px, ${y.toFixed(3)}px) rotate(${(angle + 90).toFixed(3)}deg)`,
+                transform: `translate(${x.toFixed(3)}px, ${y.toFixed(3)}px)`,
               }}
             >
-              <IconContainer
+              <CounterRotator
                 animate={{ rotate: -360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               >
-                {item.icon}
-              </IconContainer>
-              <Label>{item.name}</Label>
+                <IconContainer>
+                  {item.icon}
+                </IconContainer>
+                <Label>{item.name}</Label>
+              </CounterRotator>
             </ItemWrapper>
           );
         })}
       </Circle>
+
+      {/* Inner Circle */}
+      <Circle
+        style={{ width: '900px', height: '900px', top: '250px' }}
+        animate={{ rotate: -360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      >
+        {innerItems.map((item, index) => {
+          const angle = (index / innerItems.length) * 360;
+          const radian = (angle * Math.PI) / 180;
+          const x = Math.cos(radian) * innerRadius;
+          const y = Math.sin(radian) * innerRadius;
+
+          return (
+            <ItemWrapper
+              key={item.name}
+              $angle={angle}
+              style={{
+                transform: `translate(${x.toFixed(3)}px, ${y.toFixed(3)}px)`,
+              }}
+            >
+              <CounterRotator
+                animate={{ rotate: 360 }}
+                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              >
+                <IconContainer>
+                  {item.icon}
+                </IconContainer>
+                <Label>{item.name}</Label>
+              </CounterRotator>
+            </ItemWrapper>
+          );
+        })}
+      </Circle>
+
       <CenterContent>
         {children}
       </CenterContent>
