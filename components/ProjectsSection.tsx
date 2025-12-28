@@ -38,7 +38,7 @@ const Spotlight = styled(motion.div)`
   }
 `;
 
-const BackgroundBlob = styled(motion.div)<{ $color: string; $top: string; $left: string }>`
+const BackgroundBlob = styled(motion.div) <{ $color: string; $top: string; $left: string }>`
   position: absolute;
   width: 500px;
   height: 500px;
@@ -99,11 +99,11 @@ const FilterContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const FilterButton = styled(motion.button)<{ $active: boolean }>`
+const FilterButton = styled(motion.button) <{ $active: boolean }>`
   padding: 12px 32px;
   border-radius: 100px;
-  background: ${props => props.$active 
-    ? 'linear-gradient(135deg, var(--primary) 0%, rgba(var(--primary-rgb), 0.8) 100%)' 
+  background: ${props => props.$active
+    ? 'linear-gradient(135deg, var(--primary) 0%, rgba(var(--primary-rgb), 0.8) 100%)'
     : 'rgba(255, 255, 255, 0.03)'};
   color: ${props => props.$active ? 'white' : 'var(--text-secondary)'};
   font-weight: 600;
@@ -123,9 +123,9 @@ const FilterButton = styled(motion.button)<{ $active: boolean }>`
   }
   
   &:hover {
-    background: ${props => props.$active 
-      ? 'linear-gradient(135deg, var(--primary) 0%, rgba(var(--primary-rgb), 0.9) 100%)' 
-      : 'rgba(255, 255, 255, 0.05)'};
+    background: ${props => props.$active
+    ? 'linear-gradient(135deg, var(--primary) 0%, rgba(var(--primary-rgb), 0.9) 100%)'
+    : 'rgba(255, 255, 255, 0.05)'};
     border-color: ${props => props.$active ? 'var(--primary)' : 'rgba(255, 255, 255, 0.2)'};
     transform: translateY(-2px);
     
@@ -159,39 +159,7 @@ const projects = [
     category: "web",
     demoLink: "https://itboomi.com/"
   },
-  {
-    title: "Engineering Solutions portfolio",
-    description:
-      "A modern portfolio platform for a Engineering Solutions business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
-    tags: ["React JS", "Styled Components"],
-    category: "web",
-    demoLink: "https://austro-engineering.web.app/"
-  },
-  // {
-  //   title: "Solar Energy Solutions Portfolio",
-  //   description:
-  //     "A modern portfolio platform for a solar energy business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
-  //   tags: ["Next.js", "Styled Components"],
-  //   category: "web",
-  //   demoLink: "#"
-  // },
-  {
-  title: "Land Survey CRM & Admin Panel",
-  description:
-    "An enterprise-level admin application built for a Land Survey company to manage branch operations across Tamil Nadu. The system includes employee management, project/task tracking, customer enquiries handling, and work progress monitoring. Features role-based access control, secure data workflows, and an intuitive UI for operational efficiency.",
-  tags: ["React JS", "REST API", "React Strap"],
-  category: "web",
-  demoLink: "https://massive-thunder-d91.notion.site/Land-Survey-Gallery-view-2b445788299e80c882d2c4f5e0c42598?source=copy_link"
-}
-,
-  {
-    title: "GlowTune — AI-Based Skincare Coach App",
-    description:
-      "A personal skincare mobile application with AI-powered routine generation, progress tracking, and push notifications. Built using Supabase backend and integrated analytics. Cross-platform with 200+ active users.",
-    tags: ["React Native", "Supabase", "Firebase", "Push Notifications"],
-    category: "mobile",
-    demoLink: "https://play.google.com/store/apps/details?id=com.itboomi.glowtune&hl=en_IN"
-  },
+  //TownBus — Local Utility & Transport App
   {
     title: "TownBus — Local Utility & Transport App",
     description:
@@ -200,15 +168,99 @@ const projects = [
     category: "mobile",
     demoLink: "https://play.google.com/store/search?q=townbus+app&c=apps&hl=en_IN"
   },
+  //Notefy — AI-Powered Smart Notes App
   {
-  title: "Notefy — AI-Powered Smart Notes App",
-  description:
-    "A productivity-focused note-taking mobile app powered by AI to help users generate, organize, and summarize notes efficiently. Features include cloud sync, smart reminders, categorization, and secure Supabase storage. Currently live on the Play Store with 500+ downloads.",
-  tags: ["React Native", "Supabase", "Firebase", "AI Integration"],
-  category: "mobile",
-  demoLink: "https://play.google.com/store/search?q=notefy&c=apps&hl=en_IN" 
-}
-,
+    title: "Notefy — AI-Powered Smart Notes App",
+    description:
+      "A productivity-focused note-taking mobile app powered by AI to help users generate, organize, and summarize notes efficiently. Features include cloud sync, smart reminders, categorization, and secure Supabase storage. Currently live on the Play Store with 500+ downloads.",
+    tags: ["React Native", "Supabase", "Firebase", "AI Integration"],
+    category: "mobile",
+    demoLink: "https://play.google.com/store/search?q=notefy&c=apps&hl=en_IN"
+  },
+  //Engineering Solutions portfolio
+  {
+    title: "Engineering Solutions portfolio",
+    description:
+      "A modern portfolio platform for a Engineering Solutions business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
+    tags: ["React JS", "Styled Components"],
+    category: "web",
+    demoLink: "https://austro-engineering.web.app/"
+  },
+  //Land Survey CRM & Admin Panel
+  {
+    title: "Land Survey CRM & Admin Panel",
+    description:
+      "An enterprise-level admin application built for a Land Survey company to manage branch operations across Tamil Nadu. The system includes employee management, project/task tracking, customer enquiries handling, and work progress monitoring. Features role-based access control, secure data workflows, and an intuitive UI for operational efficiency.",
+    tags: ["React JS", "REST API", "React Strap"],
+    category: "web",
+    demoLink: "https://massive-thunder-d91.notion.site/Land-Survey-Gallery-view-2b445788299e80c882d2c4f5e0c42598?source=copy_link"
+  },
+  //Dental Snap — Dental Clinic Landing Page
+  {
+    title: "Dental Snap — Dental Clinic Landing Page",
+    description:
+      "A modern landing page built for a dental care brand to highlight professional expertise, treatment offerings, and patient trust. The site explains how the Dental Snap platform works, showcases clinic credibility, and guides users toward easy appointment booking. Designed with a clean, medical-grade UI focused on clarity, accessibility, and lead conversion.",
+    tags: ["React JS", "Styled Components", "Responsive Design"],
+    category: "web",
+    demoLink: "https://dentalsnap.app/"
+  }
+  ,
+  //GlowTune — AI-Based Skincare Coach App
+  {
+    title: "GlowTune — AI-Based Skincare Coach App",
+    description:
+      "A personal skincare mobile application with AI-powered routine generation, progress tracking, and push notifications. Built using Supabase backend and integrated analytics. Cross-platform with 200+ active users.",
+    tags: ["React Native", "Supabase", "Firebase", "Push Notifications"],
+    category: "mobile",
+    demoLink: "https://play.google.com/store/apps/details?id=com.itboomi.glowtune&hl=en_IN"
+  },
+
+  //Cookdin — Home-Cooked Food Booking Platform
+  {
+    title: "Cookdin — Home-Cooked Food Booking Platform",
+    description:
+      "A landing platform for Cookdin, a food-tech startup focused on bringing authentic home-cooked meals into everyday life. The website communicates the brand’s mission, chef booking flow, transparent pricing, and hygiene standards. It also highlights Cookdin’s social impact initiative—redistributing surplus food to orphanages and old-age homes through NGO partners—positioning technology as a driver of sustainability and empathy.",
+    tags: ["React JS", "Styled Components", "Landing Page"],
+    category: "web",
+    demoLink: "https://cookdin.com/"
+  },
+  //Solar Energy Solutions Portfolio
+  {
+    title: "Solar Energy Solutions Portfolio",
+    description: "Modern portfolio site highlighting innovative solar energy projects and sustainable green energy solutions.",
+    tags: ["Next.js", "Styled Components"],
+    category: "web",
+    demoLink: "https://vlssolar.in/"
+  },
+  //Land Survey — Employee Portal App
+  {
+    title: "Land Survey — Employee Portal App",
+    description:
+      "A mobile application built for land survey company employees to manage daily operations in one place. The app enables task completion tracking, attendance marking, leave management, and real-time notifications. Designed to streamline field operations and improve coordination between employees and the admin system.",
+    tags: ["React Native", "REST APIs", "Push Notifications"],
+    category: "mobile",
+    demoLink: "https://play.google.com/store/apps/details?id=com.saj.staff"
+  }
+  ,
+  //Vayra — Beauty & Wellness Booking Platform
+  {
+    title: "Vayra — Beauty & Wellness Booking Platform",
+    description:
+      "A service-focused landing page for Vayra, a beauty and wellness booking platform connecting users with verified makeup and spa professionals. The site emphasizes trust, ease of booking, transparent pricing, and secure payments. Built to reflect a premium yet accessible brand experience with a smooth user journey.",
+    tags: ["React JS", "Styled Components", "UI/UX Design"],
+    category: "web",
+    demoLink: "https://vayraapp.com/"
+  },
+  //GoMVP — MVP Development Company Portfolio
+  {
+    title: "GoMVP — MVP Development Company Portfolio",
+    description:
+      "A professional portfolio website for GoMVP, a company focused on rapid MVP development for startups. The platform explains the problem of slow, costly product development and positions GoMVP as a faster alternative through pre-built core features like authentication, payments, onboarding, and notifications. Designed to convert founders by clearly communicating speed, scalability, and real-world startup experience.",
+    tags: ["Next.js", "Styled Components", "SEO Optimized"],
+    category: "web",
+    demoLink: ""
+  }
+  ,
   // {
   //   title: "Explore More Work",
   //   description:
@@ -217,6 +269,8 @@ const projects = [
   //   category: "more",
   //   demoLink: "https://github.com/Thamarai-selvan-G"
   // }
+
+
 ];
 
 
@@ -256,7 +310,7 @@ const projects = [
 //     category: "mobile",
 //     demoLink: "#"
 //   },
-  
+
 //   {
 //     title: "Expansive Projects & Contributions",
 //     description: "Extensive collection of open source projects, experiments, and contributions. Visit my GitHub to explore the full portfolio.",
@@ -274,40 +328,40 @@ export default function ProjectsSection() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const filteredProjects = projects.filter(project => 
-    filter === 'all' ? true : project.category === filter
+  const filteredProjects = projects.filter(project =>
+    filter === 'all' ? true : project?.category === filter
   );
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!sectionRef.current) return;
-    
+
     const rect = sectionRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     mouseX.set(x);
     mouseY.set(y);
-    
+
     // Update CSS variables for spotlight
     sectionRef.current.style.setProperty('--mouse-x', `${x}px`);
     sectionRef.current.style.setProperty('--mouse-y', `${y}px`);
   };
 
   return (
-    <Section 
-      id="projects" 
+    <Section
+      id="projects"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
       <Spotlight className={isHovering ? 'active' : ''} />
-      
-      <BackgroundBlob 
-        $color="rgba(var(--primary-rgb), 0.3)" 
-        $top="10%" 
-        $left="10%" 
-        animate={{ 
+
+      <BackgroundBlob
+        $color="rgba(var(--primary-rgb), 0.3)"
+        $top="10%"
+        $left="10%"
+        animate={{
           y: [0, 50, 0],
           scale: [1, 1.1, 1],
         }}
@@ -317,12 +371,12 @@ export default function ProjectsSection() {
           ease: "easeInOut"
         }}
       />
-      
-      <BackgroundBlob 
-        $color="rgba(147, 51, 234, 0.3)" 
-        $top="60%" 
-        $left="80%" 
-        animate={{ 
+
+      <BackgroundBlob
+        $color="rgba(147, 51, 234, 0.3)"
+        $top="60%"
+        $left="80%"
+        animate={{
           y: [0, -50, 0],
           scale: [1, 1.2, 1],
         }}
@@ -332,7 +386,7 @@ export default function ProjectsSection() {
           ease: "easeInOut"
         }}
       />
-      
+
       <Header
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -344,22 +398,22 @@ export default function ProjectsSection() {
           Crafting digital experiences that make a difference
         </Subtitle>
         <FilterContainer>
-          <FilterButton 
-            $active={filter === 'all'} 
+          <FilterButton
+            $active={filter === 'all'}
             onClick={() => setFilter('all')}
             whileTap={{ scale: 0.95 }}
           >
             All Projects
           </FilterButton>
-          <FilterButton 
-            $active={filter === 'web'} 
+          <FilterButton
+            $active={filter === 'web'}
             onClick={() => setFilter('web')}
             whileTap={{ scale: 0.95 }}
           >
             Web Apps
           </FilterButton>
-          <FilterButton 
-            $active={filter === 'mobile'} 
+          <FilterButton
+            $active={filter === 'mobile'}
             onClick={() => setFilter('mobile')}
             whileTap={{ scale: 0.95 }}
           >
@@ -367,7 +421,7 @@ export default function ProjectsSection() {
           </FilterButton>
         </FilterContainer>
       </Header>
-      
+
       <MasonryGrid
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
