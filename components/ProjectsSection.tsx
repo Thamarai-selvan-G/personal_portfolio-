@@ -172,23 +172,23 @@ const projects = [
   {
     title: "Notefy — AI-Powered Smart Notes App",
     description:
-      "A productivity-focused note-taking mobile app powered by AI to help users generate, organize, and summarize notes efficiently. Features include cloud sync, smart reminders, categorization, and secure Supabase storage. Currently live on the Play Store with 500+ downloads.",
+      "A productivity-focused note-taking mobile app powered by AI to help users generate, organize, and summarize notes efficiently. Features include cloud sync, smart reminders, categorization, and secure Supabase storage. Currently live on the Play Store with 1K+ downloads.",
     tags: ["React Native", "Supabase", "Firebase", "AI Integration"],
     category: "mobile",
     demoLink: "https://play.google.com/store/search?q=notefy&c=apps&hl=en_IN"
   },
   //Engineering Solutions portfolio
-  {
-    title: "Engineering Solutions portfolio",
-    description:
-      "A modern portfolio platform for a Engineering Solutions business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
-    tags: ["React JS", "Styled Components"],
-    category: "web",
-    demoLink: "https://austro-engineering.web.app/"
-  },
+  // {
+  //   title: "Engineering Solutions portfolio",
+  //   description:
+  //     "A modern portfolio platform for a Engineering Solutions business featuring product offerings, installation showcase, and sustainability benefits. Built with a clean UI optimized for conversions.",
+  //   tags: ["React JS", "Styled Components"],
+  //   category: "web",
+  //   demoLink: "https://austro-engineering.web.app/"
+  // },
   //Land Survey CRM & Admin Panel
   {
-    title: "Land Survey CRM & Admin Panel",
+    title: "Land Survey ERP & Admin Panel",
     description:
       "An enterprise-level admin application built for a Land Survey company to manage branch operations across Tamil Nadu. The system includes employee management, project/task tracking, customer enquiries handling, and work progress monitoring. Features role-based access control, secure data workflows, and an intuitive UI for operational efficiency.",
     tags: ["React JS", "REST API", "React Strap"],
@@ -196,15 +196,14 @@ const projects = [
     demoLink: "https://massive-thunder-d91.notion.site/Land-Survey-Gallery-view-2b445788299e80c882d2c4f5e0c42598?source=copy_link"
   },
   //Dental Snap — Dental Clinic Landing Page
-  {
-    title: "Dental Snap — Dental Clinic Landing Page",
-    description:
-      "A modern landing page built for a dental care brand to highlight professional expertise, treatment offerings, and patient trust. The site explains how the Dental Snap platform works, showcases clinic credibility, and guides users toward easy appointment booking. Designed with a clean, medical-grade UI focused on clarity, accessibility, and lead conversion.",
-    tags: ["React JS", "Styled Components", "Responsive Design"],
-    category: "web",
-    demoLink: "https://dentalsnap.app/"
-  }
-  ,
+  // {
+  //   title: "Dental Snap — Dental Clinic Landing Page",
+  //   description:
+  //     "A modern landing page built for a dental care brand to highlight professional expertise, treatment offerings, and patient trust. The site explains how the Dental Snap platform works, showcases clinic credibility, and guides users toward easy appointment booking. Designed with a clean, medical-grade UI focused on clarity, accessibility, and lead conversion.",
+  //   tags: ["React JS", "Styled Components", "Responsive Design"],
+  //   category: "web",
+  //   demoLink: "https://dentalsnap.app/"
+  // },
   //GlowTune — AI-Based Skincare Coach App
   {
     title: "GlowTune — AI-Based Skincare Coach App",
@@ -216,22 +215,22 @@ const projects = [
   },
 
   //Cookdin — Home-Cooked Food Booking Platform
-  {
-    title: "Cookdin — Home-Cooked Food Booking Platform",
-    description:
-      "A landing platform for Cookdin, a food-tech startup focused on bringing authentic home-cooked meals into everyday life. The website communicates the brand’s mission, chef booking flow, transparent pricing, and hygiene standards. It also highlights Cookdin’s social impact initiative—redistributing surplus food to orphanages and old-age homes through NGO partners—positioning technology as a driver of sustainability and empathy.",
-    tags: ["React JS", "Styled Components", "Landing Page"],
-    category: "web",
-    demoLink: "https://cookdin.com/"
-  },
+  // {
+  //   title: "Cookdin — Home-Cooked Food Booking Platform",
+  //   description:
+  //     "A landing platform for Cookdin, a food-tech startup focused on bringing authentic home-cooked meals into everyday life. The website communicates the brand’s mission, chef booking flow, transparent pricing, and hygiene standards. It also highlights Cookdin’s social impact initiative—redistributing surplus food to orphanages and old-age homes through NGO partners—positioning technology as a driver of sustainability and empathy.",
+  //   tags: ["React JS", "Styled Components", "Landing Page"],
+  //   category: "web",
+  //   demoLink: "https://cookdin.com/"
+  // },
   //Solar Energy Solutions Portfolio
-  {
-    title: "Solar Energy Solutions Portfolio",
-    description: "Modern portfolio site highlighting innovative solar energy projects and sustainable green energy solutions.",
-    tags: ["Next.js", "Styled Components"],
-    category: "web",
-    demoLink: "https://vlssolar.in/"
-  },
+  // {
+  //   title: "Solar Energy Solutions Portfolio",
+  //   description: "Modern portfolio site highlighting innovative solar energy projects and sustainable green energy solutions.",
+  //   tags: ["Next.js", "Styled Components"],
+  //   category: "web",
+  //   demoLink: "https://vlssolar.in/"
+  // },
   //Land Survey — Employee Portal App
   {
     title: "Land Survey — Employee Portal App",
@@ -243,24 +242,23 @@ const projects = [
   }
   ,
   //Vayra — Beauty & Wellness Booking Platform
-  {
-    title: "Vayra — Beauty & Wellness Booking Platform",
-    description:
-      "A service-focused landing page for Vayra, a beauty and wellness booking platform connecting users with verified makeup and spa professionals. The site emphasizes trust, ease of booking, transparent pricing, and secure payments. Built to reflect a premium yet accessible brand experience with a smooth user journey.",
-    tags: ["React JS", "Styled Components", "UI/UX Design"],
-    category: "web",
-    demoLink: "https://vayraapp.com/"
-  },
+  // {
+  //   title: "Vayra — Beauty & Wellness Booking Platform",
+  //   description:
+  //     "A service-focused landing page for Vayra, a beauty and wellness booking platform connecting users with verified makeup and spa professionals. The site emphasizes trust, ease of booking, transparent pricing, and secure payments. Built to reflect a premium yet accessible brand experience with a smooth user journey.",
+  //   tags: ["React JS", "Styled Components", "UI/UX Design"],
+  //   category: "web",
+  //   demoLink: "https://vayraapp.com/"
+  // },
   //GoMVP — MVP Development Company Portfolio
-  {
-    title: "GoMVP — MVP Development Company Portfolio",
-    description:
-      "A professional portfolio website for GoMVP, a company focused on rapid MVP development for startups. The platform explains the problem of slow, costly product development and positions GoMVP as a faster alternative through pre-built core features like authentication, payments, onboarding, and notifications. Designed to convert founders by clearly communicating speed, scalability, and real-world startup experience.",
-    tags: ["Next.js", "Styled Components", "SEO Optimized"],
-    category: "web",
-    demoLink: ""
-  }
-  ,
+  // {
+  //   title: "GoMVP — MVP Development Company Portfolio",
+  //   description:
+  //     "A professional portfolio website for GoMVP, a company focused on rapid MVP development for startups. The platform explains the problem of slow, costly product development and positions GoMVP as a faster alternative through pre-built core features like authentication, payments, onboarding, and notifications. Designed to convert founders by clearly communicating speed, scalability, and real-world startup experience.",
+  //   tags: ["Next.js", "Styled Components", "SEO Optimized"],
+  //   category: "web",
+  //   demoLink: ""
+  // },
   // {
   //   title: "Explore More Work",
   //   description:
