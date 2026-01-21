@@ -361,10 +361,10 @@ const OrbitIcon = styled(motion.div)`
 const TypewriterText = ({ text, shouldStart = false, onComplete }: { text: string, shouldStart?: boolean, onComplete?: () => void }) => {
   const [displayedText, setDisplayedText] = useState('');
   const hasStartedRef = useRef(false);
-  
+
   useEffect(() => {
     if (!shouldStart || hasStartedRef.current) return;
-    
+
     hasStartedRef.current = true;
     let currentIndex = 0;
     const interval = setInterval(() => {
@@ -376,7 +376,7 @@ const TypewriterText = ({ text, shouldStart = false, onComplete }: { text: strin
         if (onComplete) onComplete();
       }
     }, 30); // Typing speed
-    
+
     return () => clearInterval(interval);
   }, [text, shouldStart, onComplete]);
 
@@ -392,7 +392,7 @@ export default function Hero() {
   const y = useMotionValue(0);
   const mouseX = useSpring(x, { stiffness: 150, damping: 15 });
   const mouseY = useSpring(y, { stiffness: 150, damping: 15 });
-  
+
   const rotateX = useTransform(mouseY, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-10deg", "10deg"]);
 
@@ -427,26 +427,26 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <span /> Available for work
+            <span />Available for Immediate Joining
           </StatusBadge>
-          
+
           <Title
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-          Building Digital  <br />
+            Building Digital  <br />
             <span className="highlight">Experiences</span>
           </Title>
-          
+
           <Description
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-           I'm Thamarai Selvan 👋, a Fullstack Developer building web and mobile apps, exploring backend development with Supabase, and always motivated to learn from people around me and achieve more in this field.
+            I'm Thamarai Selvan 👋, a Fullstack Developer building web and mobile apps, exploring backend development with Supabase, and always motivated to learn from people around me and achieve more in this field.
           </Description>
-          
+
           <ButtonGroup
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -466,7 +466,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <GlowEffect 
+          <GlowEffect
             animate={{ rotate: 360, scale: [1, 1.1, 1] }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
           />
@@ -477,7 +477,7 @@ export default function Hero() {
               <Code2 size={20} />
             </OrbitIcon>
           </OrbitPath>
-          
+
           <OrbitPath style={{ width: '600px', height: '600px' }} animate={{ rotate: -360 }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}>
             <OrbitIcon style={{ top: '50%', right: '0', transform: 'translate(50%, -50%)' }}>
               <Terminal size={20} />
@@ -500,8 +500,8 @@ export default function Hero() {
                   <div className="line">
                     <span>1</span>
                     <span>
-                      <TypewriterText 
-                        text="<span class='keyword'>const</span> <span class='function'>Developer</span> = {" 
+                      <TypewriterText
+                        text="<span class='keyword'>const</span> <span class='function'>Developer</span> = {"
                         shouldStart={true}
                         onComplete={() => setTypingIndex(1)}
                       />
@@ -510,8 +510,8 @@ export default function Hero() {
                   <div className="line">
                     <span>2</span>
                     <span>
-                      <TypewriterText 
-                        text="&nbsp;&nbsp;name: <span class='string'>'Thamarai selvan'</span>," 
+                      <TypewriterText
+                        text="&nbsp;&nbsp;name: <span class='string'>'Thamarai selvan'</span>,"
                         shouldStart={typingIndex >= 1}
                         onComplete={() => setTypingIndex(2)}
                       />
@@ -520,8 +520,8 @@ export default function Hero() {
                   <div className="line">
                     <span>3</span>
                     <span>
-                      <TypewriterText 
-                        text="&nbsp;&nbsp;role: <span class='string'>'Fullstack'</span>," 
+                      <TypewriterText
+                        text="&nbsp;&nbsp;role: <span class='string'>'Fullstack'</span>,"
                         shouldStart={typingIndex >= 2}
                         onComplete={() => setTypingIndex(3)}
                       />
@@ -530,8 +530,8 @@ export default function Hero() {
                   <div className="line">
                     <span>4</span>
                     <span>
-                      <TypewriterText 
-                        text="&nbsp;&nbsp;skills: [<span class='string'>'React Native'</span>, <span class='string'>'Next JS'</span>,<span class='string'>'Supabase'</span>,]," 
+                      <TypewriterText
+                        text="&nbsp;&nbsp;skills: [<span class='string'>'React Native'</span>, <span class='string'>'Next JS'</span>,<span class='string'>'Supabase'</span>,],"
                         shouldStart={typingIndex >= 3}
                         onComplete={() => setTypingIndex(4)}
                       />
@@ -540,8 +540,8 @@ export default function Hero() {
                   <div className="line">
                     <span>5</span>
                     <span>
-                      <TypewriterText 
-                        text="&nbsp;&nbsp;hardWorker: <span class='boolean'>true</span>" 
+                      <TypewriterText
+                        text="&nbsp;&nbsp;hardWorker: <span class='boolean'>true</span>"
                         shouldStart={typingIndex >= 4}
                         onComplete={() => setTypingIndex(5)}
                       />
@@ -550,8 +550,8 @@ export default function Hero() {
                   <div className="line">
                     <span>6</span>
                     <span>
-                      <TypewriterText 
-                        text="};" 
+                      <TypewriterText
+                        text="};"
                         shouldStart={typingIndex >= 5}
                       />
                       <span className="cursor" />
@@ -560,14 +560,14 @@ export default function Hero() {
                 </div>
               </CodeWindow>
             </AbstractCard>
-            
+
             {/* Floating Elements attached to the card 3D space */}
             <motion.div style={{ position: 'absolute', top: -20, right: -20, transform: 'translateZ(40px)' }}>
               <OrbitIcon>
                 <Cpu size={20} />
               </OrbitIcon>
             </motion.div>
-            
+
             <motion.div style={{ position: 'absolute', bottom: -20, left: -20, transform: 'translateZ(40px)' }}>
               <OrbitIcon>
                 <Globe size={20} />

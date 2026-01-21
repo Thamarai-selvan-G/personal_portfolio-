@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
+import { ThemeProvider } from "@/lib/ThemeContext";
 import GlobalStyles from "@/styles/GlobalStyles";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ParticleBackground";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thamaraiselvan-dev.web.app'), 
+  metadataBase: new URL('https://thamaraiselvan-dev.web.app'),
   title: {
     default: "Thamarai Selvan | Fullstack Developer",
     template: "%s | Thamarai Selvan"
@@ -31,11 +33,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Thamarai Selvan | Fullstack Developer",
     description: "Explore the portfolio of Thamarai Selvan, featuring innovative web and mobile applications.",
-    url: 'https://thamaraiselvan-dev.web.app', 
+    url: 'https://thamaraiselvan-dev.web.app',
     siteName: 'Thamarai Selvan Portfolio',
     images: [
       {
-        url: '/og-image.png', 
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Thamarai Selvan Portfolio',
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Thamarai Selvan | Fullstack Developer",
     description: "Professional portfolio of Thamarai Selvan, a Fullstack Web & Mobile App Developer.",
-    images: ['/og-image.png'], 
+    images: ['/og-image.png'],
   },
   icons: {
     icon: '/favicon.ico',
@@ -61,7 +63,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Thamarai Selvan',
-  url: 'https://thamaraiselvan-dev.web.app', 
+  url: 'https://thamaraiselvan-dev.web.app',
   jobTitle: 'Fullstack Developer - Web & Mobile App Developer',
   sameAs: [
     'https://github.com/Thamarai-selvan-G',
@@ -81,15 +83,18 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <StyledComponentsRegistry>
-          <GlobalStyles />
-          <ParticleBackground />
-          <Navbar />
-          <main style={{ minHeight: '100vh', paddingTop: 'var(--nav-height)' }}>
-            {children}
-          </main>
-          <Footer />
-        </StyledComponentsRegistry>
+        <ThemeProvider>
+          <StyledComponentsRegistry>
+            <GlobalStyles />
+            <ParticleBackground />
+            <Navbar />
+            <main style={{ minHeight: '100vh', paddingTop: 'var(--nav-height)' }}>
+              {children}
+            </main>
+            <Footer />
+            <ThemeSwitcher />
+          </StyledComponentsRegistry>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -4,19 +4,9 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #6d28d9; /* Deep Purple */
-    --primary-hover: #5b21b6;
-    --secondary: #03dac6; /* Teal */
-    --accent: #ff0266; /* Pink/Red Accent */
-    --surface: #121212;
-    --surface-light: #1e1e1e;
-    --text-primary: #ffffff;
-    --text-secondary: #a1a1aa;
-    --border: #27272a;
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --nav-height: 80px;
+    /* Theme colors are now managed by ThemeContext */
   }
 
   * {
