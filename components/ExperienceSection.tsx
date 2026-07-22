@@ -36,7 +36,7 @@ const AnimatedGrid = styled.div`
   }
 `;
 
-const FloatingOrb = styled(motion.div)<{ $color: string; $size: number }>`
+const FloatingOrb = styled(motion.div) <{ $color: string; $size: number }>`
   position: absolute;
   width: ${props => props.$size}px;
   height: ${props => props.$size}px;
@@ -94,7 +94,7 @@ const CardsContainer = styled.div`
   width: 100%;
 `;
 
-const MagneticCard = styled(motion.div)<{ $isHovered: boolean }>`
+const MagneticCard = styled(motion.div) <{ $isHovered: boolean }>`
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -266,7 +266,7 @@ const TechTag = styled(motion.span)`
   }
 `;
 
-const FloatingIcon = styled(motion.div)<{ $index: number }>`
+const FloatingIcon = styled(motion.div) <{ $index: number }>`
   position: absolute;
   width: 40px;
   height: 40px;
@@ -293,9 +293,17 @@ const FloatingIcon = styled(motion.div)<{ $index: number }>`
 
 const experiences = [
   {
+    role: "Software Engineer (SDE 1)",
+    company: "Noukha technologies",
+    period: "8 Months Experience",
+    description: `Overall 8 months of experience building 2+ web apps and 4 mobile apps. Worked on full cross-platform mobile app development for Android and iOS, and published many live production apps.`,
+    tech: ["React Native", "React", "Next.js", "iOS", "Android"],
+    highlights: ["2+ Web Apps", "4 Mobile Apps", "Published Live Apps"]
+  },
+  {
     role: "Fullstack Web & Mobile App Developer",
     company: "itboomi innovations",
-    period: "1 Year Experience",
+    period: "1 Year 3months Experience",
     description: `Driving end-to-end development across web, mobile, and backend services at Itboomi. Collaborating closely with talented teams and working through the full product lifecycle, contributing as both a developer and a product owner.`,
     tech: ["React", "Next.js", "React Native", "Supabase", "Firebase"],
     highlights: ["10+ Projects Delivered", "Performance Optimization", "Team Leadership"]
@@ -306,7 +314,7 @@ export default function ExperienceSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -321,14 +329,14 @@ export default function ExperienceSection() {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     setMousePosition({ x, y });
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     const rotateX = (y - centerY) / 20;
     const rotateY = (centerX - x) / 20;
-    
+
     card.style.setProperty('--mouse-x', `${x}px`);
     card.style.setProperty('--mouse-y', `${y}px`);
   };
@@ -336,7 +344,7 @@ export default function ExperienceSection() {
   return (
     <Section id="experience" ref={containerRef}>
       <AnimatedGrid />
-      
+
       <FloatingOrb
         $color="var(--primary)"
         $size={400}
@@ -352,7 +360,7 @@ export default function ExperienceSection() {
         $size={350}
         style={{ y: y3, top: '50%', right: '5%' }}
       />
-      
+
       <Title
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -361,7 +369,7 @@ export default function ExperienceSection() {
       >
         My <span>Experience</span> Journey
       </Title>
-      
+
       <Subtitle
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -370,7 +378,7 @@ export default function ExperienceSection() {
       >
         Building innovative solutions and pushing boundaries in web & mobile development
       </Subtitle>
-      
+
       <CardsContainer>
         {experiences.map((exp, index) => (
           <MagneticCard
@@ -379,13 +387,13 @@ export default function ExperienceSection() {
             initial={{ opacity: 0, y: 100, rotateX: 10 }}
             whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ 
-              duration: 0.8, 
+            transition={{
+              duration: 0.8,
               delay: index * 0.2,
               type: "spring",
               stiffness: 100
             }}
-            whileHover={{ 
+            whileHover={{
               scale: 1.02,
               transition: { duration: 0.3 }
             }}
@@ -393,35 +401,35 @@ export default function ExperienceSection() {
             onMouseEnter={() => setHoveredCard(index)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <CardGlow 
-              style={{ 
-                opacity: hoveredCard === index ? 1 : 0 
-              }} 
+            <CardGlow
+              style={{
+                opacity: hoveredCard === index ? 1 : 0
+              }}
             />
-            
+
             <FloatingIcon
               $index={0}
-              animate={{ 
+              animate={{
                 y: [0, -10, 0],
                 rotate: [0, 5, 0]
               }}
-              transition={{ 
-                duration: 3, 
+              transition={{
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
             >
               <Code2 size={20} />
             </FloatingIcon>
-            
+
             <FloatingIcon
               $index={1}
-              animate={{ 
+              animate={{
                 y: [0, 10, 0],
                 rotate: [0, -5, 0]
               }}
-              transition={{ 
-                duration: 4, 
+              transition={{
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 0.5
@@ -429,15 +437,15 @@ export default function ExperienceSection() {
             >
               <Sparkles size={20} />
             </FloatingIcon>
-            
+
             <FloatingIcon
               $index={2}
-              animate={{ 
+              animate={{
                 y: [0, -8, 0],
                 rotate: [0, 8, 0]
               }}
-              transition={{ 
-                duration: 3.5, 
+              transition={{
+                duration: 3.5,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 1
@@ -445,7 +453,7 @@ export default function ExperienceSection() {
             >
               <TrendingUp size={20} />
             </FloatingIcon>
-            
+
             <CardHeader>
               <RoleSection>
                 <Role>{exp.role}</Role>
@@ -454,7 +462,7 @@ export default function ExperienceSection() {
                   {exp.company}
                 </Company>
               </RoleSection>
-              
+
               <Badge
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -463,14 +471,14 @@ export default function ExperienceSection() {
                 {exp.period}
               </Badge>
             </CardHeader>
-            
+
             <Description>{exp.description}</Description>
-            
+
             <TechStack>
               {exp.tech.map((tech, i) => (
                 <TechTag
                   key={i}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.1,
                     y: -2
                   }}

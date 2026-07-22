@@ -427,7 +427,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <span />Available for Immediate Joining
+            <span />Available to Join - 1 Month Notice Period
           </StatusBadge>
 
           <Title
@@ -444,7 +444,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            I'm Thamarai Selvan 👋, a Fullstack Developer building web and mobile apps, exploring backend development with Supabase, and always motivated to learn from people around me and achieve more in this field.
+            I'm Thamarai Selvan 👋, a Mobile App Developer with backend experience. I specialize in building high-quality cross-platform applications and am always motivated to learn from people around me to achieve more in this field.
           </Description>
 
           <ButtonGroup
@@ -521,7 +521,7 @@ export default function Hero() {
                     <span>3</span>
                     <span>
                       <TypewriterText
-                        text="&nbsp;&nbsp;role: <span class='string'>'Fullstack'</span>,"
+                        text="&nbsp;&nbsp;role: <span class='string'>'Mobile Developer'</span>,"
                         shouldStart={typingIndex >= 2}
                         onComplete={() => setTypingIndex(3)}
                       />
@@ -541,7 +541,7 @@ export default function Hero() {
                     <span>5</span>
                     <span>
                       <TypewriterText
-                        text="&nbsp;&nbsp;hardWorker: <span class='boolean'>true</span>"
+                        text="&nbsp;&nbsp;problemSolver: <span class='boolean'>true</span>"
                         shouldStart={typingIndex >= 4}
                         onComplete={() => setTypingIndex(5)}
                       />

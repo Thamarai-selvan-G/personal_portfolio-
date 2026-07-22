@@ -296,9 +296,9 @@ export default function AboutSection() {
             </p>
 
             <p>
-              I have successfully completed <RedirectLink href="#projects">10+ web applications</RedirectLink> and <RedirectLink href="#projects">5 mobile applications</RedirectLink>, 
-              ranging from portfolio sites to complex administrative panels and consumer-facing apps. My technical stack includes 
-              <RedirectLink href="#skills">React JS, Next.js, React Native, Supabase, and Firebase</RedirectLink>, enabling me to build robust fullstack solutions.
+              I have successfully completed <RedirectLink href="#projects">15+ web applications</RedirectLink> and <RedirectLink href="#projects">7 mobile applications</RedirectLink>, 
+              ranging from portfolio sites to complex administrative panels and consumer-facing apps. My technical stack and tools include 
+              <RedirectLink href="#skills">React JS, Next.js, React Native, Supabase, Firebase, Xcode, and Android Studio</RedirectLink>, enabling me to build robust fullstack solutions and publish them directly to the <RedirectLink href="#skills">App Store and Play Store</RedirectLink>.
             </p>
           </Content>
 
@@ -313,11 +313,11 @@ export default function AboutSection() {
               <StatLabel>Years Exp.</StatLabel>
             </StatItem>
             <StatItem>
-              <StatValue>15+</StatValue>
+              <StatValue>20+</StatValue>
               <StatLabel>Projects</StatLabel>
             </StatItem>
             <StatItem>
-              <StatValue>10+</StatValue>
+              <StatValue>14+</StatValue>
               <StatLabel>Happy Clients</StatLabel>
             </StatItem>
           </StatsRow>
